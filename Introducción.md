@@ -1,10 +1,6 @@
 #  :dna: Introducción
-Te damos la bienvenida a este repositorio dedicado a fomentar el aprendizaje sobre el análisis de metabarcodes. Este proyecto es creado por ____ y tiene como objetivo proporcionar información de alta calidad para que tu proyecto sobre metabarcoding sea una tarea sencilla y eficiente de realizar. 
+El microbioma está formado por comunidades ecológicas de microorganismos que dominan el mundo viviente, en particular, las bacterias las cuales pueden identificarse mediante NGS  (Next Generation Sequencing) con dos vertientes, _Shotgun sequencing:_ donde se secuencia todo el DNA dentro de una muestra para identificar las características funcionales de los genomas y _Metabarcoding:_, donde a través del DNA se revela y cuantifican únicamente la presencia de múltiples especies encontrados en la misma muestra (Taberlet et al., 2018).
 
-:eyes: Ojo: lo que a continuación te mostramos es un workflow que podría funcionar eficientemente a tu proyecto, sin embargo no olvides ajustarlo dependiendo de tus objetivos.
+También, definimos un _amplicón_ como un fragmento de ADN amplificado mediante PCR para estudiar una solo especie. Mientras que _metabarcodes_ como una región corta “universal” taxonómicamente informativa flanqueada por dos regiones conservadas que sirven como anclaje para un set de primer universales para ser amplificados por la PCR. Para estos análisis se utilizan genes marcadores como 16 rRNA (bacterias), COI (animales) e ITS (hongos). 
 
-Antes de continuar es necesario definir los siguiente conceptos (Taberlet et al., 2018):
-
-:dna: **Metabarcode:** es una región corta de DNA o RNA, taxonomicamente informativa flanqueada por dos regiones conservadas que sirven como anclaje de primers (u oligonucleótidos) para la PCR.
-
-:dna: **Metabarcoding:** identifica a traves de DNA o RNA diversos taxones encontrados en una misma muestra.
+La asignación taxonómica de las secuencias generadas es fundamental para la eficacia de estos esfuerzos de biomonitorización molecular. El paso clave en el análisis de secuencias es la manera en que se eliminan los ruidos de los reads y se ensamblan en grupos llamados _ASV_ (Amplicon Sequence Variants) basado en un modelado de errores para secuencias exactas comparado con los _OTU_ (Operational Taxonomic Units) que hacen el clustering con umbral de similitud de ~97%
