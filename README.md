@@ -4,10 +4,16 @@ Te damos la bienvenida a este repositorio dedicado a fomentar el aprendizaje sob
 
 ## Contenido
 -[Introducción](agregar_link)
+
 -[Eliminación de ruido](agregar_link)
+
 -[Filtrado y recorte](agregar_link)
+
 -[Evaluación de la calidad de las lecturas](agregar_link)
+
 -[Inferencia de ASV](agregar_link)
+
 -[Árbol filogenético](agregar_link)
+
 -[Abundancias](agregar_link)
 
