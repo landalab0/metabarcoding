@@ -5,7 +5,7 @@ Te damos la bienvenida a este repositorio dedicado a fomentar el aprendizaje sob
 ## Contenido
 -[Introducción](https://github.com/landalab0/metabarcoding/blob/caee1fc2b65ebcf58e469f4dc831542d2da3db9d/Introducci%C3%B3n.md)
 
--[Eliminación de ruido](agregar_link)
+-[Limpieza](https://github.com/landalab0/metabarcoding/blob/main/Limpieza.md)
 
 -[Filtrado y recorte](agregar_link)
 
