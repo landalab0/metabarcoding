@@ -1,4 +1,8 @@
-Te damos la bienvenida a este repositorio dedicado a fomentar el aprendizaje sobre metabarcoding. Este proyecto es creado por _____ y tiene como objetivo proporcionar información de alta calidad para que tu proyecto sobre metabarcoding sea una tarea sencilla y eficiente de realizar. 
+# Metabarcoding 🦠🕵️‍♀️
+
+Hola! Te damos la bienvenida a este repositorio dedicado a fomentar el aprendizaje sobre metabarcoding. Este proyecto es creado por _____ y tiene como objetivo proporcionar un workflow para llevar a cabo tu proyecto de metabarcoding. 
+
+Utilizaremos datos provenientes de ________. Los puedes encontrar en [data ](url)
 
 :eyes: Ojo: lo que a continuación te mostramos es un workflow que podría funcionar eficientemente a tu proyecto, sin embargo, no olvides ajustarlo dependiendo de tus objetivos.
 
