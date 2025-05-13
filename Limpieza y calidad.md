@@ -1,5 +1,7 @@
 # Limpieza y Calidad 🧹
 
+Para iniciar con el flujo de trabajo, deberás tener tus archivos FASTQ (si no los has descargado, puedes encontrarlos los archivos de prueba aquí).
+
 El primer paso será limpiar nuestras secuencias de adaptadores, primers y otras secuencias
 que no necesitamos. Para esto utilizaremos **Cutadapt** 
 
@@ -21,8 +23,10 @@ mkdir –p  01.cutadapt  # Carpeta para los archivos recortados
 
 Directorio de entrada y salida
 
+```bash
 RAW_DIR="C:/Users/amplicones/data" # Directorio de entrada con archivos FASTQ
 OUT_DIR="C:/Users/amplicones/01.cutadapt" #Directorio de salida con archivos recortados
+```
 
 Ahora definiremos las secuencias de nuestros adaptadores 
 
@@ -75,13 +79,13 @@ fi
 done
 ```
 
-Para utilizar este código podemos guardarlo como un script en Bash
+Para utilizar este código puedes guardarlo como un script en Bash
 
 ```bash
 cutadapt.sh
 ```
 
-Y lo corremos desde la terminal de Bash
+Y lo correrlo desde la terminal de Bash
 
 ```bash
 bash cutadapt.sh
