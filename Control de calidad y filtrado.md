@@ -18,7 +18,7 @@ library(Biostrings)
 library(ShortRead)
 ```
 
-definamos la ruta de nuestros archivos recortados
+Definamos la ruta de nuestros archivos recortados (los resultados del paso anterior)
 
 ```r
 path.cut <- file.path("01.cutadapt/")
