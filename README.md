@@ -9,15 +9,17 @@ Utilizaremos datos provenientes de ________. Los puedes encontrar en [data ](url
 ## Contenido
 -[Introducción](https://github.com/landalab0/metabarcoding/blob/caee1fc2b65ebcf58e469f4dc831542d2da3db9d/Introducci%C3%B3n.md)
 
--[Limpieza](https://github.com/landalab0/metabarcoding/blob/main/Limpieza.md)
+-[Limpieza y calidad](https://github.com/landalab0/metabarcoding/blob/main/Limpieza%20y%20calidad.md)
 
--[Filtrado y recorte](agregar_link)
+-[Control de Calidad ](https://github.com/landalab0/metabarcoding/blob/main/Control%20de%20calidad%20y%20filtrado.md)
 
--[Evaluación de la calidad de las lecturas](agregar_link)
+-[Filtrado y recorte](https://github.com/landalab0/metabarcoding/blob/main/Filtrado%20y%20recorte.md)
 
--[Inferencia de ASV](agregar_link)
+-[Modelado error](https://github.com/landalab0/metabarcoding/blob/main/TasaError.md)
 
--[Árbol filogenético](agregar_link)
+-[Inferencia de ASV y merge](agregar_link)
 
--[Abundancias](agregar_link)
+-[Remoción quimeras](agregar_link)
+
+-[Asignación taxonómica](agregar_link)
 
