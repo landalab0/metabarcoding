@@ -55,7 +55,15 @@ filtFs <- file.path(path.cut, "filtered", basename(cutFs))
 filtRs <- file.path(path.cut, "filtered", basename(cutRs))
 ```
 
-Filtramos: 
+La función que usaremos a continuación *filterAndTrim* tiene distintos parámetros que podrás cambiar a tu conveniencia (ten en cuenta la longitud y calidad de tus lecturas), algunos son:
+
+	• truncLen: corta las lecturas a esa longitud.
+	• maxEE=c(2,2): controla la calidad permitida en términos de errores esperados. Puedes ser más estricto con c(1,1) si es necesario.
+	• truncQ=2: corta la lectura en la primera base con calidad < Q2 (puede dejarse así).
+	• maxN=0: descarta cualquier lectura con bases ambiguas (N).
+
+
+Ahora filtraremos: 
 
 ```r
 out <- filterAndTrim(fnFs, filtFs, fnRs, filtRs, truncLen=c(260,200),
@@ -70,23 +78,51 @@ head(out)
 ```r
 errF <- learnErrors(filtFs, multithread = TRUE)
 errR <- learnErrors(filtRs, multithread = TRUE)
+```
 
-
-#Genera un gráfico con las tasas de error
+Genera un gráfico con las tasas de error
 ```r
 plotErrors(errF, nominalQ = TRUE)
 plotErrors(errR, nominalQ = TRUE)
 ```
 
-#Dereplicar lecturas
+Dereplicar lecturas
 ```r
 derepFs <- derepFastq(filtFs)
 names(derepFs) <- sample.names
 ```
 
-#Inferencia de secuencias 
+Inferencia de secuencias y merge
 
 ```r
 dadaFs <- dada(filtFs, err = errF, multithread = TRUE)
 dadaRs <- dada(filtRs, err = errR, multithread = TRUE)
+mergers <- mergePairs(dadaFs, filtFs, dadaRs, filtRs, verbose=TRUE, minOverlap = 12)
+seqtab <- makeSequenceTable(mergers)
+```
+
+## Remoción de Quimeras
+
+```r
+seqtab.nochim <- removeBimeraDenovo(seqtab, method="consensus", multithread=TRUE, verbose=TRUE)
+```
+Ver distribución de longitudes de ASVs después de quitar quimeras
+```
+table(nchar(getSequences(seqtab.nochim)))
+```
+
+Tabla de seguimiento de lecturas
+```
+getN <- function(x) sum(getUniques(x))
+track <- cbind(out_O, sapply(dadaFs, getN), rowSums(seqtab.nochim))
+#track <- cbind(out, sapply(dadaFs, getN), sapply(dadaRs, getN), sapply(mergers, getN),
+               rowSums(seqtab.nochim))
+```
+Ajustar nombres de columnas
+```
+colnames(track) <- c("input", "filtered", "denoisedF", "nonchim")
+rownames(track) <- sample.names
+#colnames(track) <- c("input", "filtered", "denoisedF", "denoisedR", "merged", "nonchim")
+#rownames(track) <- sample.names
+head(track)
 ```
