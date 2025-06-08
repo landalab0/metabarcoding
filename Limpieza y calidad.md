@@ -1,4 +1,4 @@
-# Limpieza y Calidad 🧹
+# Limpieza y calidad – CutAdapt🧹
 
 Para iniciar con el flujo de trabajo, deberás tener tus archivos FASTQ (si no los has descargado, puedes encontrarlos los archivos de prueba aquí).
 
