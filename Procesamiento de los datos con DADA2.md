@@ -18,6 +18,12 @@ library(Biostrings) # manejo de secuencias
 library(ShortRead) # lecturas de archivos FASTQ
 ```
 
+Establece el directorio de trabajo si aún no está configurado
+
+```r
+setwd (ruta/de/tu/directorio)
+```
+
 Definamos la ruta de nuestros archivos recortados (los resultados del paso anterior)
 
 ```r
