@@ -14,6 +14,12 @@ Algunas de sus funciones son:
 
 Si aún no lo tienes instalado, puedes revisar este [link](https://cutadapt.readthedocs.io/en/stable/installation.html) 
 
+Primero posicionate en tu directorio utilizando los comandos
+
+```bash
+cd  ruta/a/tu/repositorio # Ingresa la ruta de acceso donde tengas tus archivos
+ls # Enlista el contenido dentro de la ruta 
+```
 Para esto crearemos dos directorios, uno de entrada con nuestros datos crudos (archivos FASTQ) y otro de salida de los archivos recortados. 
 
 ```bash
