@@ -147,6 +147,7 @@ dadaRs <- dada(filtRs, err = errR, multithread = TRUE)
 ```
 
 Resultado: 
+```r
 Sample - lecturas despues del filtrado - secuencias unicas detectadas
 Sample 1 - 118317 reads in 25821 unique sequences.
 Sample 2 - 124353 reads in 48299 unique sequences.
@@ -156,6 +157,7 @@ Sample 1 - 118317 reads in 25769 unique sequences.
 Sample 2 - 124353 reads in 51070 unique sequences.
 Sample 3 - 124133 reads in 48749 unique sequences.
 Sample 4 - 123311 reads in 44051 unique sequences.
+```
 
 Una vez detectadas las ASVs en forward y reverse, ahora fusionamos los pares, DADA2 busca un solapamiento confiable entre cada par R1 y R2 para reconstruir el amplicón completo.
 
@@ -166,10 +168,13 @@ mergers <- mergePairs(dadaFs, filtFs, dadaRs, filtRs, verbose=TRUE, minOverlap =
 ```
 
 Resultado: 
+
+```r
 109886 paired-reads (in 2409 unique pairings) successfully merged out of 115858 (in 5288 pairings) input.
 103372 paired-reads (in 9139 unique pairings) successfully merged out of 120441 (in 19792 pairings) input.
 101310 paired-reads (in 10182 unique pairings) successfully merged out of 119420 (in 21311 pairings) input.
 104586 paired-reads (in 7289 unique pairings) successfully merged out of 119821 (in 15948 pairings) input.
+```
 
 Construye tabla de secuencias (ASVs por muestra) y exporta las dimensiones de la tabla resultante
 
