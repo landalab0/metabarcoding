@@ -21,7 +21,7 @@ cd  ruta/a/tu/repositorio # Ingresa la ruta de acceso donde tengas tus archivos
 ls # Enlista el contenido dentro de la ruta 
 ```
 
-Si tu archivo requiere ser descomprimido ejecuta los siguientes pasos, utiliza el siguiente comando:
+Si tu archivo requiere ser descomprimido utiliza el siguiente comando:
 
 ```bash
 tar -xvzf archivo.tar.gz
@@ -52,49 +52,44 @@ Confirma que han sido descomprimidos
 
 ```bash
 cd "c/ruta/a/tu/repositorio/archivo/data"
-ls #se enlistan los fastq.gz
+ls # Se enlistan los fastq.gz
 ```
 
-Posteriormente, crearemos dos directorios, uno de entrada con nuestros datos crudos (archivos FASTQ) y otro de salida de los archivos recortados. 
+Posteriormente crearemos y guardaremos el siguiente código como un script en Bash
 
 ```bash
+nano run_cutadapt.sh
+```
+
+Que contendrá los siguientes puntos
+
+```bash
+# Crearemos dos directorios, uno de entrada con nuestros datos crudos (archivos FASTQ) y otro de salida de los archivos recortados. 
+
 mkdir –p  data  # Contiene los archivos fastq originales 
 mkdir –p  01.cutadapt  # Carpeta para los archivos recortados 
-```
 
-Directorio de entrada y salida
+# Directorio de entrada y salida
 
-```bash
 RAW_DIR="C:/Users/amplicones/data" # Directorio de entrada con archivos FASTQ
 OUT_DIR="C:/Users/amplicones/01.cutadapt" #Directorio de salida con archivos recortados
-```
 
-Ahora definiremos las secuencias de nuestros adaptadores 
+# Ahora definiremos las secuencias de nuestros adaptadores 
 
-```bash
 FORWARD_ADAPTER="CCTACGGGNGGCWGCAG" 
-
 REVERSE_ADAPTER="GACTACHVGGGTATCTAATCC"
-```
 
-Configuraremos los parámetros de cutadapt
+# Configuraremos los parámetros de cutadapt
 
-```bash
 ERROR_RATE="0.1" 
-
 MINIMUM_LENGTH="1" 
-
 OVERLAP="3" 
-
 QUALITY_CUTOFF="0" 
-
 QUALITY_BASE="33" 
-
 CORES="1" 
-```
-Ejecutaremos Cutadapt 
 
-```bash
+# Proceso para cada par R1/R2 - Ejecución de Cutadapt 
+
 for FILE in "$RAW_DIR"/*_R1_001.fastq.gz; do
 base=$(basename "$FILE" _R1_001.fastq.gz)
 R2_FILE="$RAW_DIR/${base}_R2_001.fastq.gz"
@@ -119,25 +114,22 @@ else
 fi
 done
 ```
-Guardalo con ctrl + O; luego enter
-Sal con ctrl + X
 
-Para utilizar este código puedes guardarlo como un script en Bash
+Guardalo con ctrl + O; luego Enter y Sal con ctrl + X
 
-```bash
-cutadapt.sh
-```
 Da el permiso de ejecutar
-```bash
-chmod +x cutadapt.sh
-```
-Y lo correrlo desde la terminal de Bash
 
 ```bash
-bash cutadapt.sh
+chmod +x run_cutadapt.sh
 ```
 
- Después de ejecutarlo, revisa que la carpeta 01.cutadapt/ tenga los archivos recortados
+Y correrlo desde la terminal de Bash
+
+```bash
+bash run_cutadapt.sh
+```
+
+Después de ejecutarlo, revisa que la carpeta 01.cutadapt/ tenga los archivos recortados
 
 ```bash
 ls 01.cutadapt/
