@@ -26,12 +26,12 @@ library(Biostrings) # manejo de secuencias
 library(ShortRead) # lecturas de archivos FASTQ
 ```
 
-Establece el directorio de trabajo si aún no está configurado
+Establece el directorio de trabajo si aún no está configurado y verificalo
 
 ```r
 setwd (ruta/de/tu/directorio)
+getwd()
 ```
-
 Definamos la ruta de nuestros archivos recortados (los resultados del paso anterior)
 
 ```r
@@ -50,8 +50,8 @@ Para obtener los nombres de nuestras muestras:
 ```r
 get.sample.name <- function(fname) strsplit(basename(fname), "_")[[1]][1]
 sample.names <- unname(sapply(cutFs, get.sample.name))
-head(sample.names)
 ```
+
 Verificamos
 
 ```r
