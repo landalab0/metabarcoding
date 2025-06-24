@@ -20,7 +20,42 @@ Primero posicionate en tu directorio utilizando los comandos
 cd  ruta/a/tu/repositorio # Ingresa la ruta de acceso donde tengas tus archivos
 ls # Enlista el contenido dentro de la ruta 
 ```
-Para esto crearemos dos directorios, uno de entrada con nuestros datos crudos (archivos FASTQ) y otro de salida de los archivos recortados. 
+
+Si tu archivo requiere ser descomprimido ejecuta los siguientes pasos, utiliza el siguiente comando:
+
+```bash
+tar -xvzf archivo.tar.gz
+```
+
+Después de descomprimir, la estructura del directorio será la siguiente:
+
+```bash
+# Este es un ejemplo de la estructura del directorio una vez que se haya descomprimido el archivo.
+    archivo/
+    ├── data/
+    │   ├── 24h_R2.fastq.gz
+    │   ├── 48h_R2.fastq.gz
+    │   ├── dbs/
+    │   │   └── classifier_silva_138_trained.qza
+    │   ├── 24h_R1.fastq.gz
+    │   ├── 0h_R1.fastq.gz
+    │   ├── 9h_R2.fastq.gz
+    │   ├── 9h_R1.fastq.gz
+    │   ├── 48h_R1.fastq.gz
+    │   ├── 0h_R2.fastq.gz
+    ├── results/
+    ├── src/
+    │   └── create_manifest.sh
+```
+
+Confirma que han sido descomprimidos
+
+```bash
+cd "c/ruta/a/tu/repositorio/archivo/data"
+ls #se enlistan los fastq.gz
+```
+
+Posteriormente, crearemos dos directorios, uno de entrada con nuestros datos crudos (archivos FASTQ) y otro de salida de los archivos recortados. 
 
 ```bash
 mkdir –p  data  # Contiene los archivos fastq originales 
