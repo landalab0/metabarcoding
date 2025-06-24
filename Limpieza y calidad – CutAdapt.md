@@ -119,15 +119,52 @@ else
 fi
 done
 ```
+Guardalo con ctrl + O; luego enter
+Sal con ctrl + X
 
 Para utilizar este código puedes guardarlo como un script en Bash
 
 ```bash
 cutadapt.sh
 ```
-
+Da el permiso de ejecutar
+```bash
+chmod +x cutadapt.sh
+```
 Y lo correrlo desde la terminal de Bash
 
 ```bash
 bash cutadapt.sh
 ```
+
+ Después de ejecutarlo, revisa que la carpeta 01.cutadapt/ tenga los archivos recortados
+
+```bash
+ls 01.cutadapt/
+```
+
+Dando lo siguiente:
+
+```
+0h_R1.fastq.gz  24h_R1.fastq.gz  48h_R1.fastq.gz  9h_R1.fastq.gz
+0h_R2.fastq.gz  24h_R2.fastq.gz  48h_R2.fastq.gz  9h_R2.fastq.gz
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
