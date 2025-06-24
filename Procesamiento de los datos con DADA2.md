@@ -2,6 +2,14 @@
 
 Ahora, nos iremos a R para trabajar con dada2.
 
+Tip: si requieres actualizarlo, ejecuta el siguiente comando
+
+``` r
+install.packages("installr")
+library(installr)
+updateR()
+``` 
+
 Instalaremos el paquete dada2
 
 ``` r
@@ -44,6 +52,13 @@ get.sample.name <- function(fname) strsplit(basename(fname), "_")[[1]][1]
 sample.names <- unname(sapply(cutFs, get.sample.name))
 head(sample.names)
 ```
+Verificamos
+
+```r
+  cutFs
+  cutRs
+  head(sample.names)
+ ``` 
 
 Y finalmente graficaremos la calidad 
 
