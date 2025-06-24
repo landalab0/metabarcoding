@@ -13,9 +13,9 @@ devtools::install_github("benjjneb/dada2", ref="v1.16")
 Cargaremos las librerías necesarias
 
 ``` r
-library(dada2)
-library(Biostrings)
-library(ShortRead)
+library(dada2) # pipeline principal
+library(Biostrings) # manejo de secuencias
+library(ShortRead) # lecturas de archivos FASTQ
 ```
 
 Definamos la ruta de nuestros archivos recortados (los resultados del paso anterior)
