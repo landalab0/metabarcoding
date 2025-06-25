@@ -13,7 +13,7 @@ Utilizaremos datos provenientes del artículo [**Analysing the dynamics of the b
 
 -[Procesamiento de los datos con DADA2 ](https://github.com/landalab0/metabarcoding/blob/main/Procesamiento%20de%20los%20datos%20con%20DADA2.md)
 
--[Objeto Phyloseq]()
+-[Objeto Phyloseq](https://github.com/landalab0/metabarcoding/blob/main/Objeto%20pyloseq.md)
 
 
 
