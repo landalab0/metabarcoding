@@ -60,10 +60,10 @@ cutRs
 head(sample.names)
  ``` 
 
-Y finalmente graficaremos la calidad 
+Y finalmente graficaremos la calidad.
 
 ```r
-plotQualityProfile(cutFs[1:2])
+plotQualityProfile(cutFs[1:2]) 
 plotQualityProfile(cutRs[1:2])
 ```
 
@@ -94,9 +94,9 @@ out <- filterAndTrim(fnFs, filtFs, fnRs, filtRs, truncLen=c(260,200),
 head(out)
 ```
 
-Te dará un resultado como el siguiente:
+Resultado
 
-```r
+```
                 reads.in reads.out
 0h_R1.fastq.gz     2e+05    118317
 24h_R1.fastq.gz    2e+05    124353
@@ -147,7 +147,7 @@ dadaRs <- dada(filtRs, err = errR, multithread = TRUE)
 ```
 
 Resultado: 
-```r
+```
 Sample - lecturas despues del filtrado - secuencias unicas detectadas
 Sample 1 - 118317 reads in 25821 unique sequences.
 Sample 2 - 124353 reads in 48299 unique sequences.
@@ -167,9 +167,9 @@ Fusiona los pares
 mergers <- mergePairs(dadaFs, filtFs, dadaRs, filtRs, verbose=TRUE, minOverlap = 12)
 ```
 
-Resultado: 
+Resultado
 
-```r
+```
 109886 paired-reads (in 2409 unique pairings) successfully merged out of 115858 (in 5288 pairings) input.
 103372 paired-reads (in 9139 unique pairings) successfully merged out of 120441 (in 19792 pairings) input.
 101310 paired-reads (in 10182 unique pairings) successfully merged out of 119420 (in 21311 pairings) input.
@@ -186,23 +186,33 @@ dim(seqtab)
 ```
 
 ## Remoción secuencias de Quimeras
-Las quimeras son artefactos comunes en PCR (combinaciones erróneas de fragmentos reales), DADA2 las identifica y elimina comparando los ASVs con otros más abundantes (15 a 20 min).
+Las quimeras son artefactos comunes en PCR (combinaciones erróneas de fragmentos reales), DADA2 las identifica y elimina comparando los ASVs con otros más abundantes.
 
 ```r
 seqtab.nochim <- removeBimeraDenovo(seqtab, method="consensus", multithread=TRUE, verbose=TRUE)
 ```
-Resultado: Identified 21987 bimeras out of 22352 input sequences (15 min)
+Resultado: Identified 21987 bimeras out of 22352 input sequences (15 a 20 min).
 
 Ver distribución de longitudes de ASVs después de quitar quimeras
 
-```
+```r
 table(nchar(getSequences(seqtab.nochim)))
 ```
 
-Tabla de seguimiento de lecturas
+Resultado
+
+```
+260 280 281 382 383 387 400 401 402 403 404 405 406 407 408 409 410 411 414 415
+1   2   3   1   2   2   2   1  16   3   5   5   1  24   5   2   1   2   1   2
+419 420 421 422 423 424 425 426 427 428 429 442 443 448
+2   1   1  17   1   1  13   8 163  54   2   3   2  16
+```
+
+Tabla de seguimiento de lecturas únicas que contiene datos sin ruidos
 
 ```
 getN <- function(x) sum(getUniques(x))
+
 track <- cbind(out_O, sapply(dadaFs, getN), rowSums(seqtab.nochim))
 #track <- cbind(out, sapply(dadaFs, getN), sapply(dadaRs, getN), sapply(mergers, getN),
                rowSums(seqtab.nochim))
