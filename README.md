@@ -12,7 +12,7 @@ Utilizaremos datos provenientes del artículo [**Analysing the dynamics of the b
 
 -[Limpieza y calidad - CutAdapt](https://github.com/landalab0/metabarcoding/blob/main/Limpieza%20y%20calidad%20%E2%80%93%20CutAdapt.md).
 
--[Procesamiento de los datos con DADA2 ](https://github.com/landalab0/metabarcoding/blob/main/Procesamiento%20de%20los%20datos%20con%20DADA2.md)
+-[Procesamiento de los datos - DADA2 ](https://github.com/landalab0/metabarcoding/blob/main/Procesamiento%20de%20%20datos%20-%20DADA2.md)
 
 -[Asignacion_taxonomica_ASVs](https://github.com/landalab0/metabarcoding/blob/main/Asignacion_taxonomica_ASVs.md)
 
