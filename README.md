@@ -16,7 +16,7 @@ Utilizaremos datos provenientes del artículo [**Analysing the dynamics of the b
 
 -[Asignacion_taxonomica_ASVs](https://github.com/landalab0/metabarcoding/blob/main/Asignacion_taxonomica_ASVs.md)
 
--[Objeto Phyloseq](https://github.com/landalab0/metabarcoding/blob/main/Objeto%20Phyloseq.md)
+-[Objeto Phyloseq](https://github.com/landalab0/metabarcoding/blob/main/Objeto_Phyloseq.md)
 
 
 
