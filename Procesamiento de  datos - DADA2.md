@@ -2,14 +2,6 @@
 
 Ahora, nos iremos a R para trabajar con dada2.
 
-Tip: si requieres actualizarlo, ejecuta el siguiente comando
-
-``` r
-install.packages("installr")
-library(installr)
-updateR()
-``` 
-
 Instalaremos el paquete dada2
 
 ``` r
@@ -84,7 +76,7 @@ La función que usaremos a continuación *filterAndTrim* tiene distintos paráme
 	• maxN=0: descarta cualquier lectura con bases ambiguas (N).
 
 
-Ahora filtraremos: 
+Ahora filtraremos
 
 ```r
 out <- filterAndTrim(fnFs, filtFs, fnRs, filtRs, truncLen=c(260,200),
@@ -104,10 +96,13 @@ Resultado
 9h_R1.fastq.gz     2e+05    123311
 ```
 
-Siendo: 
-reads.in: número de secuencias que tenía el archivo al inicio (≈ 200,000 en este caso) y reads.out: número de secuencias que pasaron el filtro de calidad y trimming.
+Siendo:
 
-Por ejemplo; En 0h_R1.fastq.gz había ~200,000 lecturas originales → 118,317 pasaron los 	filtros, (~59%–62%) común en datos reales.
+reads.in: número de secuencias que tenía el archivo al inicio (≈ 200,000 en este caso) 
+
+reads.out: número de secuencias que pasaron el filtro de calidad y trimming.
+
+Por ejemplo; En 0h_R1.fastq.gz había ~200,000 lecturas originales → 118,317 pasaron los filtros, (~59%–62%) común en datos reales.
   
 ## Modelado y Error  📈
 El siguiente paso es modelar los errores de secuenciación.
@@ -117,12 +112,23 @@ Esto permite distinguir errores reales de variaciones biológicas reales (ASVs)
 ```r
 errF <- learnErrors(filtFs, multithread = TRUE) # Aprender errores para las lecturas forward (R1)
 ```
-Resultado: 127429640 total bases in 490114 reads from 4 samples will be used for learning the error rates (15 min).
+
+Resultado
+
+```
+127429640 total bases in 490114 reads from 4 samples will be used for learning the error rates (15 min).
+```
 
 ```r
 errR <- learnErrors(filtRs, multithread = TRUE) # Aprender errores para las lecturas reverse (R2)
 ```
-Resultado: 98022800 total bases in 490114 reads from 4 samples will be used for learning the error rates (15 min), donde se observan menos bases (~98 millones) porque las lecturas reverse suelen ser más cortas.
+
+Resultado
+
+```
+98022800 total bases in 490114 reads from 4 samples will be used for learning the error rates (15 min),
+donde se observan menos bases (~98 millones) porque las lecturas reverse suelen ser más cortas.
+```
 
 Genera un gráfico con las tasas de error
 
@@ -137,6 +143,7 @@ Dereplicar lecturas
 derepFs <- derepFastq(filtFs)
 names(derepFs) <- sample.names
 ```
+
 Con el modelo de errores se comparan las lecturas observadas vs las esperadas por error, y posteriormente identificamos las secuencias reales (ASVs) en cada muestra. Este paso reemplaza el antiguo enfoque de OTUs (clustering).
 
 Inferencia de secuencias y merge con DADA para forward y reverse
@@ -146,7 +153,7 @@ dadaFs <- dada(filtFs, err = errF, multithread = TRUE)
 dadaRs <- dada(filtRs, err = errR, multithread = TRUE)
 ```
 
-Resultado: 
+Resultado
 ```
 Sample - lecturas despues del filtrado - secuencias unicas detectadas
 Sample 1 - 118317 reads in 25821 unique sequences.
@@ -181,8 +188,12 @@ Construye tabla de secuencias (ASVs por muestra) y exporta las dimensiones de la
 ```r
 seqtab <- makeSequenceTable(mergers)
 dim(seqtab)
+```
 
-# RESULTADO: [1]     4 22352
+Resultado
+
+```
+[1]     4 22352
 ```
 
 ## Remoción secuencias de Quimeras
@@ -191,7 +202,12 @@ Las quimeras son artefactos comunes en PCR (combinaciones erróneas de fragmento
 ```r
 seqtab.nochim <- removeBimeraDenovo(seqtab, method="consensus", multithread=TRUE, verbose=TRUE)
 ```
-Resultado: Identified 21987 bimeras out of 22352 input sequences (15 a 20 min).
+
+Resultado (15 a 20 min)
+
+```
+Identified 21987 bimeras out of 22352 input sequences
+```
 
 Ver distribución de longitudes de ASVs después de quitar quimeras
 
