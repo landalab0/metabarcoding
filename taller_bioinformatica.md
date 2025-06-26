@@ -95,6 +95,12 @@ cat("✅ Objeto 'seqtab.nochim' cargado y listo para usar\n")
 ```r
 write.csv(seqtab.nochim, "tabla_no_quimeras.csv")
 ```
+Tip: si requieres actualizarlo, ejecuta el siguiente comando
 
+``` r
+install.packages("installr")
+library(installr)
+updateR()
+``` 
 
 
