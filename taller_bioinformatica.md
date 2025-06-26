@@ -14,7 +14,7 @@ save(errF, errR, file = ruta_guardado)
 cat("✅ Modelos errF y errR guardados en:", ruta_guardado, "\n")
 ```
 
-# Script para cargarlos errF, errR previamente guardados
+# Script para cargar los errF, errR previamente guardados
 Ruta del archivo errF, errR en .RData (ajusta la ruta si es necesario)
 
 ```r
@@ -50,7 +50,7 @@ plotErrors(errR, nominalQ = TRUE)
 dev.off()
 ```
 
-# Script para cargarlos dadaFs y dadaRs previamente guardados
+# Script para cargar los dadaFs y dadaRs previamente guardados
 
 Ruta del archivo con los objetos
 
@@ -71,7 +71,7 @@ print(ls())
 cat("✅ Objetos cargados: dadaFs y dadaRs están listos para usar\n")
 ```
 
-# Script para cargarlos ruta_nochim previamente guardada (la tabla sin quimeras)
+# Script para cargar ruta_nochim previamente guardada (la tabla sin quimeras)
 
 ```r
 ruta_nochim <- "tabla_no_quimeras.RData"
