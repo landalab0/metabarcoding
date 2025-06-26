@@ -7,11 +7,14 @@ Utilizaremos datos provenientes del artículo [**Analysing the dynamics of the b
  Ojo :eyes: : lo que a continuación te mostramos es un workflow que podría funcionar eficientemente a tu proyecto, sin embargo, no olvides ajustarlo dependiendo de tus objetivos.
 
 ## Contenido
+
 -[Introducción](https://github.com/landalab0/metabarcoding/blob/caee1fc2b65ebcf58e469f4dc831542d2da3db9d/Introducci%C3%B3n.md)
 
 -[Limpieza y calidad - CutAdapt](https://github.com/landalab0/metabarcoding/blob/main/Limpieza%20y%20calidad%20%E2%80%93%20CutAdapt.md).
 
 -[Procesamiento de los datos con DADA2 ](https://github.com/landalab0/metabarcoding/blob/main/Procesamiento%20de%20los%20datos%20con%20DADA2.md)
+
+-[Asignacion_taxonomica_ASVs](https://github.com/landalab0/metabarcoding/blob/main/Asignacion_taxonomica_ASVs.md)
 
 -[Objeto Phyloseq](https://github.com/landalab0/metabarcoding/blob/main/Objeto%20Phyloseq.md)
 
