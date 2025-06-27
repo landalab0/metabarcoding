@@ -162,4 +162,37 @@ write.csv(taxa, "taxonomy.csv") # Taxonomía asignada a cada ASV
 write.csv(seqtab.nochim, "table.csv") # Matriz ASV por muestra (sin quimeras)
 write.csv(track, "stats.csv") # Estadísticas de procesamiento por muestra
 ```
+## 👀 OJO
+*GNU nano 6.2                       asignacion_tax.R*
+# Cargar librerias necesarias
+#
+cat("🔎 Asignando taxonomía...\n")
+taxa <- assignTaxonomy(seqtab.nochim,
+                       classifier,
+                       multithread = TRUE,
+                       tryRC = TRUE)
+
+# Guardar resultados
+dir.create("results", showWarnings = FALSE)
+save(taxa, file = "results/taxonomia_asignada.RData")
+write.csv(taxa, file = "results/taxonomy.csv")
+
+#  Mostrar vista previa
+cat("✅ Asignación completada:\n")
+print(dim(taxa))
+print(head(taxa))
+
+load("results/taxonomia_asignada.RData")
+
+## para tips:
+
+# Verificar si los paquetes están instalados
+libs <- c("dada2", "ShortRead", "Biostrings")
+sapply(libs, function(pkg) pkg %in% rownames(installed.packages()))
+#TRUE
+
+
+
+
+
 
