@@ -189,7 +189,10 @@ load("results/taxonomia_asignada.RData")
 # Verificar si los paquetes están instalados
 libs <- c("dada2", "ShortRead", "Biostrings")
 sapply(libs, function(pkg) pkg %in% rownames(installed.packages()))
+
 #TRUE
+
+# para el objeto track --> En el pipeline de DADA2, track suele ser una tabla que resume el número de lecturas retenidas en cada paso (filtrado, inferencia, fusiones, etc.),
 
 
 
