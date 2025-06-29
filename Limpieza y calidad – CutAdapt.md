@@ -71,8 +71,8 @@ mkdir –p  01.cutadapt  # Carpeta para los archivos recortados
 
 # Directorio de entrada y salida
 
-RAW_DIR="C:/Users/amplicones/data" # Directorio de entrada con archivos FASTQ
-OUT_DIR="C:/Users/amplicones/01.cutadapt" #Directorio de salida con archivos recortados
+RAW_DIR="C:/ruta/a/tu/repositorio" # Directorio de entrada con archivos FASTQ
+OUT_DIR="C:ruta/a/tu/repositorio/01.cutadapt" #Directorio de salida con archivos recortados
 
 # Ahora definiremos las secuencias de nuestros adaptadores 
 
