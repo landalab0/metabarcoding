@@ -89,7 +89,7 @@ head(out)
 Resultado
 
 ```
-                reads.in reads.out
+		reads.in   reads.out
 0h_R1.fastq.gz     2e+05    118317
 24h_R1.fastq.gz    2e+05    124353
 48h_R1.fastq.gz    2e+05    124133
@@ -102,12 +102,15 @@ reads.in: número de secuencias que tenía el archivo al inicio (≈ 200,000 en 
 
 reads.out: número de secuencias que pasaron el filtro de calidad y trimming.
 
-Por ejemplo; En 0h_R1.fastq.gz había ~200,000 lecturas originales → 118,317 pasaron los filtros, (~59%–62%) común en datos reales.
+Por ejemplo; En 0h_R1.fastq.gz había ~200,000 lecturas originales → 118,317 pasaron los filtros, (~59%) común en datos reales.
   
-## Modelado y Error  📈
+## Modelado y Error  📈 
+
 El siguiente paso es modelar los errores de secuenciación.
 DADA2 aprende el perfil de errores del secuenciador a partir de los reads.
 Esto permite distinguir errores reales de variaciones biológicas reales (ASVs)
+
+Primero corre errF
 
 ```r
 errF <- learnErrors(filtFs, multithread = TRUE) # Aprender errores para las lecturas forward (R1)
@@ -118,6 +121,8 @@ Resultado
 ```
 127429640 total bases in 490114 reads from 4 samples will be used for learning the error rates (15 min).
 ```
+
+Posteriormente errR
 
 ```r
 errR <- learnErrors(filtRs, multithread = TRUE) # Aprender errores para las lecturas reverse (R2)
@@ -154,6 +159,7 @@ dadaRs <- dada(filtRs, err = errR, multithread = TRUE)
 ```
 
 Resultado
+
 ```
 Sample - lecturas despues del filtrado - secuencias unicas detectadas
 Sample 1 - 118317 reads in 25821 unique sequences.
