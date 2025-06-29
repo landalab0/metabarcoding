@@ -8,7 +8,7 @@ Utilizaremos datos provenientes del artículo [**Analysing the dynamics of the b
 
 ## Contenido
 
--[Introducción](https://github.com/landalab0/metabarcoding/blob/caee1fc2b65ebcf58e469f4dc831542d2da3db9d/Introducci%C3%B3n.md)
+-[Introducción](https://github.com/landalab0/metabarcoding/blob/main/Introducci%C3%B3n.md)
 
 -[Limpieza y calidad - CutAdapt](https://github.com/landalab0/metabarcoding/blob/main/Limpieza%20y%20calidad%20%E2%80%93%20CutAdapt.md).
 
