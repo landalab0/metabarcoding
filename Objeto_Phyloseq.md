@@ -1,4 +1,4 @@
-Este pipeline describe como construir un objeto phyloseq a partir de datos de secuenciación metagenómica ya preprocesados con DADA2.
+## Este pipeline describe como construir un objeto phyloseq a partir de datos de secuenciación metagenómica ya preprocesados con DADA2.
 
 Comenzamos cargando las librerias para el análisis filogenético y estructural de las comunidades microbianas.
 
@@ -42,7 +42,7 @@ fitGTR_green <- update(fit, k = 4, inv = 0.2)
 save(fitGTR_green, file = "tree.green.ok.RData")
 ```
 
-Construimos el objeto phyloseq integrando secuencias, taxonomía, árbol y metadata.
+Construiremos el objeto phyloseq integrando secuencias, taxonomía, árbol y metadata.
 
 ```r
 load("tree.green.ok.RData")
@@ -78,11 +78,6 @@ is.rooted(phy_tree(ps))  # Verifica si el árbol está enraizado
 
 save(ps, file = "phyloseq_green_root_ok.RDATA")
 ```
-
-
-
-
-
 
 
 
