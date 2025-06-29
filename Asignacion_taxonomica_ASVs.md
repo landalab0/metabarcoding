@@ -32,11 +32,20 @@ Se leen las secuencias y la tabla de taxonomía.
 Luego se verifica que las secuencias y sus nombres coincidan con los identificadores de la taxonomía
 
 ```r
-sq <- getSequences(fn)
-tdf <- read.csv(txfn, sep = "\t", header = TRUE)
-tax <- tdf[, 2]
-names(tax) <- tdf[, 1]
+sq <- getSequences(fn) # Carga las secuencias de referencia
+tdf <- read.csv(txfn, sep = "\t", header = TRUE) # Lee la tabla de taxonomía (formato TSV)
+```
 
+Asigna los nombres de la taxonomía a las secuencias
+
+```r
+tax <- tdf[, 2] # 
+names(tax) <- tdf[, 1]
+```
+
+Verifica que las secuencias y las taxonomías coinciden en orden
+
+```r
 identical(names(sq), names(tax))  # Debe devolver TRUE
 ```
 
@@ -60,29 +69,29 @@ Este bloque de código realiza dos tareas principales:
 
 # 1.Limpieza de niveles taxonómicos y construcción del clasificador
 
-El objetivo es corregir y estandarizar los niveles taxonómicos antes de entrenar el clasificador:
+El objetivo será corregir y estandarizar los niveles taxonómicos antes de entrenar el clasificador:
 
-Eliminar el nombre del género duplicado en la especie
+Primero elimina el nombre del género duplicado en la especie
 
 ```r
 for(i in seq(length(taxes))) {
   gen <- taxes[[i]][[6]]
-  gen <- substr(gen, 4, nchar(gen))
-  taxes[[i]][[7]] <- gsub(gen, "", taxes[[i]][[7]])
-  taxes[[i]][[7]] <- gsub("__ ", "__", taxes[[i]][[7]])
+  gen <- substr(gen, 4, nchar(gen)) # Elimina el prefijo "g__"
+  taxes[[i]][[7]] <- gsub(gen, "", taxes[[i]][[7]]) # Elimina repeticiones del género
+  taxes[[i]][[7]] <- gsub("__ ", "__", taxes[[i]][[7]]) # Limpia espacios
 }
 ```
 
-Detectar niveles no asignados
+Después, detecta niveles no asignados
 
 ```r
-tax_pre <- c("d__", "p__", "c__", "o__", "f__", "g__", "s__")
+tax_pre <- c("d__", "p__", "c__", "o__", "f__", "g__", "s__") 
 is.unassigned <- sapply(taxes, function(tx) {
   tx == tax_pre
 }) |> t()
 ```
 
-Determinar profundidad de clasificación válida
+Determina profundidad de clasificación válida por secuencia
 
 ```r
 tax.depth <- apply(is.unassigned, 1, function(isu) {
@@ -90,7 +99,7 @@ tax.depth <- apply(is.unassigned, 1, function(isu) {
 })
 ```
 
-Generar ID taxonómicos válidos
+Genera ID taxonómicos
 
 ```r
 tax.ids <- sapply(seq_along(taxes), function(i) {
@@ -103,13 +112,15 @@ names(tax.ids) <- names(taxes)
 
 Crear archivo FASTA con anotaciones corregidas
 
+Comienza asociando las secuencias con su respectiva etiqueta y guardando el archivo para el uso con assignTaxonomy
+
 ```r
 sq.out <- sq
 names(sq.out) <- tax.ids
 writeFasta(sq.out, "greengenes2_trainset.fa.gz", compress = TRUE)
 ```
 
-Validación rápida del clasificador
+Validación rápida del clasificado para que sea compatible con DADA2
 
 ```r
 dada2:::tax.check("greengenes2_trainset.fa.gz",
@@ -142,60 +153,23 @@ Primeras asignaciones taxonómicas
 head(taxa_print)
 ```
 
-Dimensiones de la tabla
+Dimensiones de la tabla, filas ASV's y columnas nivel taxonómico
 
 ```r
 dim(taxa_print)
 ```
 
-Exportar objetos generados durante el preprocesamiento para uso posterior
+Exporta los objetos generados durante el preprocesamiento para uso posterior
 
 ```r
 save(errF, dadaFs, dadaRs, seqtab.nochim, taxa,
      file = "data_ok.RData") # Archivo binario con objetos R para reutilización
 ```
 
-Exportar resultados en formato CSV
+Por ultimo, exporta los resultados en formato CSV
 
 ```r
 write.csv(taxa, "taxonomy.csv") # Taxonomía asignada a cada ASV
 write.csv(seqtab.nochim, "table.csv") # Matriz ASV por muestra (sin quimeras)
 write.csv(track, "stats.csv") # Estadísticas de procesamiento por muestra
 ```
-## 👀 OJO
-*GNU nano 6.2                       asignacion_tax.R*
-# Cargar librerias necesarias
-#
-cat("🔎 Asignando taxonomía...\n")
-taxa <- assignTaxonomy(seqtab.nochim,
-                       classifier,
-                       multithread = TRUE,
-                       tryRC = TRUE)
-
-# Guardar resultados
-dir.create("results", showWarnings = FALSE)
-save(taxa, file = "results/taxonomia_asignada.RData")
-write.csv(taxa, file = "results/taxonomy.csv")
-
-#  Mostrar vista previa
-cat("✅ Asignación completada:\n")
-print(dim(taxa))
-print(head(taxa))
-
-load("results/taxonomia_asignada.RData")
-
-## para tips:
-
-# Verificar si los paquetes están instalados
-libs <- c("dada2", "ShortRead", "Biostrings")
-sapply(libs, function(pkg) pkg %in% rownames(installed.packages()))
-
-#TRUE
-
-# para el objeto track --> En el pipeline de DADA2, track suele ser una tabla que resume el número de lecturas retenidas en cada paso (filtrado, inferencia, fusiones, etc.),
-
-
-
-
-
-
