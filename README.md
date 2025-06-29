@@ -18,6 +18,6 @@ Utilizaremos datos provenientes del artículo [**Analysing the dynamics of the b
 
 -[Objeto Phyloseq](https://github.com/landalab0/metabarcoding/blob/main/Objeto_Phyloseq.md)
 
--[1lisis de diversida microbiana](https://github.com/landalab0/metabarcoding/blob/main/An%C3%A1lisis%20de%20diversidad%20microbiana.md)
+-[Análisis de diversida microbiana](https://github.com/landalab0/metabarcoding/blob/main/An%C3%A1lisis%20de%20diversidad%20microbiana.md)
 
 
