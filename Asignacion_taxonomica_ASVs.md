@@ -49,16 +49,6 @@ Verifica que las secuencias y las taxonomías coinciden en orden
 identical(names(sq), names(tax))  # Debe devolver TRUE
 ```
 
-Profundidad taxonómica
-
-Se evalúa la cantidad de niveles taxonómicos por entrada (Greengenes2 maneja 7 niveles: dominio a especie):
-
-```r
-taxes <- strsplit(tax, "; ")
-tax.depth <- sapply(taxes, length)
-table(tax.depth)
-```
-
 ## 🧬 Asignación Taxonómica con Clasificador Personalizado Greengenes2 (DADA2)
 
 Este bloque de código realiza dos tareas principales:
@@ -74,6 +64,7 @@ El objetivo será corregir y estandarizar los niveles taxonómicos antes de entr
 Primero elimina el nombre del género duplicado en la especie
 
 ```r
+taxes <- strsplit(tax, "; ")
 for(i in seq(length(taxes))) {
   gen <- taxes[[i]][[6]]
   gen <- substr(gen, 4, nchar(gen)) # Elimina el prefijo "g__"
@@ -90,13 +81,16 @@ is.unassigned <- sapply(taxes, function(tx) {
   tx == tax_pre
 }) |> t()
 ```
-
+table(tax.depth)
+```
 Determina profundidad de clasificación válida por secuencia
 
 ```r
 tax.depth <- apply(is.unassigned, 1, function(isu) {
   min(which(isu) - 1L, 7L)
 })
+
+table(tax.depth)
 ```
 
 Genera ID taxonómicos
@@ -110,7 +104,7 @@ tax.ids <- sapply(seq_along(taxes), function(i) {
 names(tax.ids) <- names(taxes)
 ```
 
-Crear archivo FASTA con anotaciones corregidas
+Crea el archivo FASTA con anotaciones corregidas compatible con DADA2
 
 Comienza asociando las secuencias con su respectiva etiqueta y guardando el archivo para el uso con assignTaxonomy
 
@@ -120,7 +114,7 @@ names(sq.out) <- tax.ids
 writeFasta(sq.out, "greengenes2_trainset.fa.gz", compress = TRUE)
 ```
 
-Validación rápida del clasificado para que sea compatible con DADA2
+Validación rápida del clasificador (opcional)
 
 ```r
 dada2:::tax.check("greengenes2_trainset.fa.gz",
@@ -129,7 +123,15 @@ dada2:::tax.check("greengenes2_trainset.fa.gz",
 
 # 2. Asignación de taxonomía a las ASVs
 
+Cargar objetos generados por DADA2
+
 ```r
+load("errF, errR, dadaFs, dadaRs, seqtab.nochim")
+```
+
+Ejecuta
+
+```
 classifier <- "greengenes2_trainset.fa.gz" # Clasificador limpio y entrenado para assignTaxonomy()
 
 taxa <- assignTaxonomy(seqtab.nochim,
