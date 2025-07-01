@@ -1,4 +1,4 @@
-## Este pipeline describe como construir un objeto phyloseq a partir de datos de secuenciación metagenómica ya preprocesados con DADA2.
+## Este pipeline describe como construir un objeto phyloseq a partir de datos ya preprocesados con DADA2.
 
 Comenzamos cargando las librerias para el análisis filogenético y estructural de las comunidades microbianas.
 
