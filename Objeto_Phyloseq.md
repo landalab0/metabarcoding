@@ -49,22 +49,27 @@ Construiremos el objeto phyloseq integrando secuencias, taxonomía, árbol y met
 ```r
 load("tree.green.ok.RData")
 
+# Asegurarse que los nombres de muestra coincidan con el metadata
 rownames(seqtab.nochim) <- gsub(".fastq.gz", "", rownames(seqtab.nochim))
 
-#tmp.seqtab <- seqtab.nochim
-#colnames(tmp.seqtab) <- names(ASVs.nochim)
-#tmp.taxa <- taxa
-#rownames(tmp.taxa) <- names(ASVs.nochim)
-#ps.green.nochim <- phyloseq(
+# Renombrar columnas (ASVs) y filas (taxonomía) con IDs cortos
+tmp.seqtab <- seqtab.nochim
+colnames(tmp.seqtab) <- names(ASVs.nochim)
+
+tmp.taxa <- taxa
+rownames(tmp.taxa) <- names(ASVs.nochim)
+
+# Construir el objeto phyloseq
+ps.green.nochim <- phyloseq(
   otu_table(tmp.seqtab, taxa_are_rows = FALSE),
   sample_data(metadata),
   tax_table(tmp.taxa),
   refseq(ASVs.nochim),
   phy_tree(fitGTR_green$tree)
 )
-#save(ps.green.nochim, file = "phyloseq_green_ok.RDATA")
 
-
+# Guardalo en el objeto phyloseq
+save(ps.green.nochim, file = "phyloseq_green_ok.RDATA")
 ```
 
 🌱 Enraizamos el árbol filogenético para análisis de diversidad filogenética.
